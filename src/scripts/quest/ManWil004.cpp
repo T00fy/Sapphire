@@ -101,7 +101,7 @@ public:
                                  eventMgr().sendEventNotice( player, 0x050002, 0, 1, 0, 0 );
                                  player.registerAetheryte( 2 );
                                  player.setRewardFlag( Common::UnlockEntry::Return );
-                                 Scene00002( player );
+                                 Scene00051( quest, player );
                                },
                                nullptr, getId() );
     }
@@ -148,14 +148,19 @@ private:
       Scene00050( player );
   }
 
-  void Scene00001( Entity::Player& player )
+  void Scene00001( World::Quest& quest, Entity::Player& player )
   {
-    eventMgr().playQuestScene( player, getId(), SEQ_1_ACTOR1, HIDE_HOTBAR, bindSceneReturn( &ManWil004::Scene00001Return ) );
+    eventMgr().playQuestScene( player, getId(), SEQ_1_ACTOR1, 0x0EFB, bindSceneReturn( &ManWil004::Scene00001Return ) );
   }
 
   void Scene00001Return( World::Quest& quest, Entity::Player& player, const Event::SceneResult& result )
   {
     Scene00002(player);
+  }
+
+  void Scene00051( World::Quest& quest, Entity::Player& player )
+  {
+    eventMgr().playQuestSceneChain( player, getId(), 51, NONE, bindQuestScene( &ManWil004::Scene00001 ) );
   }
 
   void Scene00002( Entity::Player& player )
