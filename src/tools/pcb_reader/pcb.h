@@ -1,6 +1,7 @@
 #ifndef _PCB_H
 #define _PCB_H
 
+#include <cstring>
 #include <stdint.h>
 #include <vector>
 
